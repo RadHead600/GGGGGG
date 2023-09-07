@@ -9,6 +9,7 @@ public class StartGameController : Singleton<StartGameController>
     [SerializeField] private List<Spawner> _spawners;
     [SerializeField] private PointsTimer _pointsTimer;
     [SerializeField] private MoveTo _startTerrain;
+    [SerializeField] private UpgradeCanvas _upgradeCanvas;
 
     public event Action OnStartGame;
 
@@ -44,6 +45,7 @@ public class StartGameController : Singleton<StartGameController>
         _shops[0].UnlockItems(GameInformation.Instance.Information.WeaponsBought);
         _shops[0].Equip(GameInformation.Instance.Information.WeaponEquip);
         LevelProgressUI.Instance.UpdateLevelNumText(GameInformation.Instance.Information.PassedLevel);
+        _upgradeCanvas.gameObject.SetActive(true);
     }
 
     public void StartLevel()

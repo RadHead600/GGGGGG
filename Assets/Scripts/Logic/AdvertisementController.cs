@@ -23,8 +23,10 @@ public class AdvertisementController : Singleton<AdvertisementController>
 
     public void Internal()
     {
+#if UNITY_WEBGL
         StopLevel();
         ShowInternal();
+#endif
     }
 
     public void RewardedVideo()

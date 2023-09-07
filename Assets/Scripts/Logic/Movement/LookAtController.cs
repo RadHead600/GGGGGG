@@ -9,6 +9,7 @@ public class LookAtController : MonoBehaviour
     [SerializeField] private SphereCollider _sphereCollider;
     [SerializeField] private float _directionTime;
     [SerializeField] private float _minTriggerDistance;
+    [SerializeField] private Vector3 _offset;
 
     private GameObject _triggerObject;
     private Tween _tween;
@@ -38,9 +39,8 @@ public class LookAtController : MonoBehaviour
             _lookAt = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
             return;
         }
-        _tween = transform.DODynamicLookAt(_lookAt, _directionTime);
-        Debug.DrawLine(transform.position, _lookAt, Color.red);
-
+        Quaternion targetRotation = Quaternion.LookRotation(_lookAt - transform.position);
+        _tween = transform.DORotateQuaternion(targetRotation * Quaternion.Euler(_offset), _directionTime);
         _triggerObject = other.gameObject;
         OnLook?.Invoke();
     }

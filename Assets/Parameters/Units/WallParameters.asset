@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WallParameters
   m_EditorClassIdentifier: 
   _minSpeed: 0
-  _minHealth: 5
+  _minHealth: 10

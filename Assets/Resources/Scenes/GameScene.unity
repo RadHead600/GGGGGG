@@ -2348,10 +2348,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 529416478, guid: 6b34e6eb318554b458f2d4569976376e, type: 3}
-      propertyPath: _enemyMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 1526080382, guid: 6b34e6eb318554b458f2d4569976376e, type: 3}
       propertyPath: _moveJoystick
       value: 

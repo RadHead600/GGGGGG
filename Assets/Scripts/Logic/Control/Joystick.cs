@@ -1,23 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    public Vector2 Direction => new Vector2(_input.x, _input.y);
-
-    public float HandleRange
-    {
-        get { return _handleRange; }
-        set { _handleRange = Mathf.Abs(value); }
-    }
-
-    public float DeadZone
-    {
-        get { return _deadZone; }
-        set { _deadZone = Mathf.Abs(value); }
-    }
 
     [SerializeField] private float _handleRange = 1;
     [SerializeField] private float _deadZone = 0;
@@ -31,6 +16,20 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     private Camera _cam;
 
     private Vector2 _input = Vector2.zero;
+
+    public Vector2 Direction => new Vector2(_input.x, _input.y);
+
+    public float HandleRange
+    {
+        get { return _handleRange; }
+        set { _handleRange = Mathf.Abs(value); }
+    }
+
+    public float DeadZone
+    {
+        get { return _deadZone; }
+        set { _deadZone = Mathf.Abs(value); }
+    }
 
     protected virtual void Start()
     {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using static Cinemachine.CinemachineOrbitalTransposer;
 
 public class EnemyAI : Enemy
 {
@@ -24,22 +25,30 @@ public class EnemyAI : Enemy
     {
         if (_aIMoveTo.IsJump() != isJump)
         {
+            Skin.Animator.speed = 1;
             Skin.Animator.SetBool("Jump", _aIMoveTo.IsJump());
             isJump = _aIMoveTo.IsJump();
             return;
         }
+        Debug.Log(Attack.IsAttack);
         if (Attack.IsAttack)
         {
+            Skin.Animator.speed = 1;
             _aIMoveTo.StopMove();
             Skin.Animator.SetFloat("Speed", 0);
             isAttack = true;
             return;
         }
-        Skin.Animator.SetFloat("Speed", NavMeshAgent.speed);
         if (isAttack)
         {
             _aIMoveTo.Move();
             isAttack = false;
+            return;
+        }
+        if (Skin.Animator.speed != NavMeshAgent.speed)
+        {
+            Skin.Animator.speed = NavMeshAgent.speed;
+            Skin.Animator.SetFloat("Speed", NavMeshAgent.speed);
         }
     }
 

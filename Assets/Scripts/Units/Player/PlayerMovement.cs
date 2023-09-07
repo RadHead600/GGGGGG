@@ -8,6 +8,7 @@ public class PlayerMovement : PlayerController, IMove
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private Joystick _moveJoystick;
     [SerializeField] private float _directionTime;
+    [SerializeField] private Vector3 _rotateOffset;
 
     private Vector3 _moveVector;
     private Vector3 _fwd, _right;
@@ -76,6 +77,7 @@ public class PlayerMovement : PlayerController, IMove
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
         _characterController.Move(heading * Speed * Time.deltaTime);
         Skin.Animator.SetFloat("Speed", heading.magnitude);
+        Skin.Animator.speed = (heading.magnitude > 0 ? Speed / 10 : 1);
         if (!Attack.IsAttack)
             Direction(heading);
     }
