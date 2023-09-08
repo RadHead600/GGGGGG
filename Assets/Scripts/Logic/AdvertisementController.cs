@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+п»їusing System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,10 +23,8 @@ public class AdvertisementController : Singleton<AdvertisementController>
 
     public void Internal()
     {
-#if UNITY_WEBGL
         StopLevel();
         ShowInternal();
-#endif
     }
 
     public void RewardedVideo()
@@ -56,7 +54,7 @@ public class AdvertisementController : Singleton<AdvertisementController>
         }
     }
 
-    // количество рекламной валюты настраивается в jslib документе в вызове функции 
+    // РєРѕР»РёС‡РµСЃС‚РІРѕ СЂРµРєР»Р°РјРЅРѕР№ РІР°Р»СЋС‚С‹ РЅР°СЃС‚СЂР°РёРІР°РµС‚СЃСЏ РІ jslib РґРѕРєСѓРјРµРЅС‚Рµ РІ РІС‹Р·РѕРІРµ С„СѓРЅРєС†РёРё 
     public void AddGems(int value)
     {
         GameInformation.Instance.Information.Gems += value;

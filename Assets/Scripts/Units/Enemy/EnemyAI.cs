@@ -30,7 +30,6 @@ public class EnemyAI : Enemy
             isJump = _aIMoveTo.IsJump();
             return;
         }
-        Debug.Log(Attack.IsAttack);
         if (Attack.IsAttack)
         {
             Skin.Animator.speed = 1;

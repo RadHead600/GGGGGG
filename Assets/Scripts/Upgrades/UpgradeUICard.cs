@@ -7,13 +7,17 @@ public class UpgradeUICard : MonoBehaviour
     [SerializeField] private UpgradeTypeParameters _type;
     [SerializeField] private Upgrade _cardInformation;
 
+    public TextMeshProUGUI InfoText => _infoText;
+    public UpgradeTypeParameters Type => _type;
+    public Upgrade CardInformation => _cardInformation;
+
     private void Start()
     {
         _cardInformation.OnActivate += UpdateInformation;
         UpdateInformation();
     }
 
-    public void UpdateInformation()
+    public virtual void UpdateInformation()
     {
         if (_type == UpgradeTypeParameters.Int)
         {
@@ -28,7 +32,7 @@ public class UpgradeUICard : MonoBehaviour
         return System.Convert.ToDouble(_cardInformation.LastValue) + System.Convert.ToDouble(_cardInformation.Parameters.ToString());
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         _cardInformation.OnActivate -= UpdateInformation;
     }

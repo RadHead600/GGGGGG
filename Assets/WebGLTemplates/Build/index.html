@@ -23,6 +23,7 @@
       <script>
           var player;
           var myGameInstance;
+          var lb;
 
           YaGames
               .init()
@@ -30,6 +31,7 @@
                   console.log('Yandex SDK initialized');
                   window.ysdk = ysdk;
                   auth();
+                  initLeaderboards();
               });
 
           function initPlayer() {
@@ -38,6 +40,10 @@
 
                   return player;
               });
+          }
+
+          function initLeaderboards() {
+            ysdk.getLeaderboards().then(_lb => lb = _lb);
           }
 
           function auth() {

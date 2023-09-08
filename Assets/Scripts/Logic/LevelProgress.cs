@@ -1,7 +1,10 @@
-using System;
+п»їusing System;
+using System.Runtime.InteropServices;
 
 public class LevelProgress : Singleton<LevelProgress>
 {
+    [DllImport("__Internal")]
+    private static extern void SetToLeaderboard(int value);
 
     private int _countKillsOnLevel;
 
@@ -16,9 +19,9 @@ public class LevelProgress : Singleton<LevelProgress>
             if (progress >= 1)
             {
                 OnCompletedLevel?.Invoke();
-                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) // кнопка для показа рекламы каждый второй уровень
+                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) // РєРЅРѕРїРєР° РґР»СЏ РїРѕРєР°Р·Р° СЂРµРєР»Р°РјС‹ РєР°Р¶РґС‹Р№ РІС‚РѕСЂРѕР№ СѓСЂРѕРІРµРЅСЊ
                     AdvertisementController.Instance.ButtonReward.transform.localScale = UnityEngine.Vector3.one;
-                if (GameInformation.Instance.Information.PassedLevel % 3 == 0) // показывать рекламу каждый третий уровень 
+                if (GameInformation.Instance.Information.PassedLevel % 3 == 0) // РїРѕРєР°Р·С‹РІР°С‚СЊ СЂРµРєР»Р°РјСѓ РєР°Р¶РґС‹Р№ С‚СЂРµС‚РёР№ СѓСЂРѕРІРµРЅСЊ 
                     AdvertisementController.Instance.Internal();
             }
         }
@@ -37,6 +40,7 @@ public class LevelProgress : Singleton<LevelProgress>
     {
         CountKillsOnLevel = 0;
         LevelProgressUI.Instance.UpdateLevelNumText(++GameInformation.Instance.Information.PassedLevel);
+        SetToLeaderboard(GameInformation.Instance.Information.PassedLevel);
         GameInformation.OnInformationChange?.Invoke();
     }
 

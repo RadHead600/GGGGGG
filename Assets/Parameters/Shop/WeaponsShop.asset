@@ -31,3 +31,4 @@ MonoBehaviour:
   _moneySprites:
   - {fileID: 21300000, guid: 4ca0708151b60449d97a6e6a1455f979, type: 3}
   - {fileID: 21300000, guid: 52066fc285ffc4bb0b9fc98f1d840149, type: 3}
+  - {fileID: 21300000, guid: 13fc64bb545d04550bdc58cabefcd0b0, type: 3}

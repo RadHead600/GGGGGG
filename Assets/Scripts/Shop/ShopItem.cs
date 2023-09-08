@@ -18,5 +18,6 @@ public class ShopItem
 public enum ItemMoneyType
 {
     Gem,
-    Gold
+    Gold,
+    Level
 } 

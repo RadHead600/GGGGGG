@@ -2,7 +2,6 @@ mergeInto(LibraryManager.library, {
 
 	SaveExtern: function(date) {
     	var dateString = UTF8ToString(date);
-		console.log(dateString);
     	var myobj = JSON.parse(dateString);
     	player.setData(myobj);
 		myGameInstance.SendMessage('GameParametersLoaderCanvas', 'TakeStack');
@@ -59,6 +58,12 @@ mergeInto(LibraryManager.library, {
 				}
 			}
 		});
+	},
+
+	SetToLeaderboard: function(value) {
+		ysdk.getLeaderboards()
+			.then(lb =>
+			lb.SetToLeaderboardScore('LevelRecord', value));
 	},
 
   });

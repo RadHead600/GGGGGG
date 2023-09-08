@@ -1321,7 +1321,7 @@ PrefabInstance:
     - target: {fileID: 5931897139241930671, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
       propertyPath: m_fontSize
-      value: 25.25
+      value: 29.45
       objectReference: {fileID: 0}
     - target: {fileID: 5931897139241930671, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
@@ -1398,7 +1398,7 @@ PrefabInstance:
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.22800002
+      value: 0.148
       objectReference: {fileID: 0}
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
@@ -1408,7 +1408,7 @@ PrefabInstance:
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.16131417
+      value: 0.0813142
       objectReference: {fileID: 0}
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}

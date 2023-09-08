@@ -2,12 +2,12 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
-public class ChangeLanguageController : MonoBehaviour
+public class ChangeLanguageController : Singleton<ChangeLanguageController>
 {
     [DllImport("__Internal")]
     private static extern string GetLang();
 
-    private void Awake()
+    public void SetLang()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         string lang = GetLang();

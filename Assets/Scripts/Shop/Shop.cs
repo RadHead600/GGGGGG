@@ -43,6 +43,8 @@ public class Shop : MonoBehaviour
             objectDemonstration.transform.localScale = new Vector3(_shopParameters.Items[i].ItemObject.transform.localScale.x, _shopParameters.Items[i].ItemObject.transform.localScale.y, _shopParameters.Items[i].ItemObject.transform.localScale.z);
             card.CostText.text = _shopParameters.Items[i].ItemCost.ToString();
             card.TextTranslator.key = _shopParameters.Items[i].WordsKeyTranslatorText;
+            if (_shopType == ShopType.Weapon)
+                card.GetComponent<WeaponInfoUI>().DemonstrationWeaponInformation(_shopParameters.Items[i].ItemObject.GetComponent<Weapon>());
             Sprite moneySprite = _shopParameters.MoneySprites[((int)_shopParameters.Items[i].MoneyType)];
             if (moneySprite != null)
                 card.MoneyImage.sprite = moneySprite;
@@ -69,14 +71,26 @@ public class Shop : MonoBehaviour
 
     private void BuyItem(int itemNum)
     {
-        int money = IsMoneyIsGoldType(itemNum) ? GameInformation.Instance.Information.Golds : GameInformation.Instance.Information.Gems;
         int cost = _shopParameters.Items[itemNum].ItemCost;
-        if (money < cost)
-            return;
-        if (IsMoneyIsGoldType(itemNum))
-            GameInformation.Instance.Information.Golds -= cost;
-        else
-            GameInformation.Instance.Information.Gems -= cost;
+        switch (_shopParameters.Items[itemNum].MoneyType)
+        {
+            case ItemMoneyType.Gold:
+                if (GameInformation.Instance.Information.Golds < cost)
+                    return;
+                GameInformation.Instance.Information.Golds -= cost;
+                break;
+            case ItemMoneyType.Gem:
+                if (GameInformation.Instance.Information.Gems < cost)
+                    return;
+                GameInformation.Instance.Information.Gems -= cost;
+                break;
+            case ItemMoneyType.Level:
+                if (GameInformation.Instance.Information.PassedLevel < cost)
+                    return;
+                break;
+            default:
+                return;
+        }
         switch (_shopType)
         {
             case ShopType.Skin:
@@ -90,11 +104,6 @@ public class Shop : MonoBehaviour
         _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.AddListener(() => Equip(itemNum));
         Unlockitem(itemNum, _isEquipKeyText);
         GameInformation.OnInformationChange?.Invoke();
-    }
-
-    private bool IsMoneyIsGoldType(int itemNum)
-    {
-        return _shopParameters.Items[itemNum].MoneyType == ItemMoneyType.Gold;
     }
 
     private void Unlockitem(int itemNum, string buttonText)

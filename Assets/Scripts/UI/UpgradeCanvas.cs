@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class UpgradeCanvas : MonoBehaviour
 {
-    void Start()
+    private void LateUpdate()
     {
         gameObject.SetActive(false);
+        enabled = false;
     }
 }
