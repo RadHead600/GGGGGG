@@ -1679,11 +1679,26 @@ PrefabInstance:
       propertyPath: _unitUpgrade
       value: 
       objectReference: {fileID: 1798320509}
+    - target: {fileID: 5234658735579252576, guid: b243f41c5d20c74449243e51e4432e9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822644283068555699, guid: b243f41c5d20c74449243e51e4432e9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7541246678070018659, guid: b243f41c5d20c74449243e51e4432e9d,
         type: 3}
       propertyPath: _unitUpgrade
       value: 
       objectReference: {fileID: 847694815}
+    - target: {fileID: 8695961398308340924, guid: b243f41c5d20c74449243e51e4432e9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b243f41c5d20c74449243e51e4432e9d, type: 3}
 --- !u!1 &727287907 stripped
