@@ -27,11 +27,11 @@ public class StartGameController : Singleton<StartGameController>
 
         if (GameInformation.Instance.Information.SkinsBought == null)
         {
-            GameInformation.Instance.Information.SkinsBought = new List<int>
+        }
+        GameInformation.Instance.Information.SkinsBought = new List<int>
             {
                 0
             };
-        }
 
         _shops[1].UnlockItems(GameInformation.Instance.Information.SkinsBought);
         _shops[1].Equip(GameInformation.Instance.Information.SkinEquip);
