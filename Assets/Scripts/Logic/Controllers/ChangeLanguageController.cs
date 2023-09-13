@@ -7,8 +7,9 @@ public class ChangeLanguageController : Singleton<ChangeLanguageController>
     [DllImport("__Internal")]
     private static extern string GetLang();
 
-    public void SetLang()
+    protected override void Awake()
     {
+        base.Awake();
 #if UNITY_WEBGL && !UNITY_EDITOR
         string lang = GetLang();
         if (lang == "ru")

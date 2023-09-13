@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
-using static Cinemachine.CinemachineOrbitalTransposer;
 
 public class PlayerMovement : PlayerController, IMove
 {
@@ -50,15 +49,12 @@ public class PlayerMovement : PlayerController, IMove
         _moveVector.x = Input.GetAxis("Horizontal") * Speed;
         _moveVector.y = _characterController.isGrounded ? 0 : -1;
         _moveVector.z = Input.GetAxis("Vertical") * Speed;
-
         _characterController.Move(_moveVector * Time.deltaTime);
         _moveVector.Normalize();
         Skin.Animator.SetFloat("Speed", _moveVector.magnitude);
-
-        if (!Attack.IsAttack)
-        {
+        Skin.Animator.speed = (_moveVector.magnitude > 0 ? Speed / 10 : 1);
+        if (!LookAtController.Tween.IsActive())
             Direction(_moveVector);
-        }
     }
 
     void RecalculateCamera(Camera _cam)
@@ -78,7 +74,7 @@ public class PlayerMovement : PlayerController, IMove
         _characterController.Move(heading * Speed * Time.deltaTime);
         Skin.Animator.SetFloat("Speed", heading.magnitude);
         Skin.Animator.speed = (heading.magnitude > 0 ? Speed / 10 : 1);
-        if (!Attack.IsAttack)
+        if (!LookAtController.Tween.IsActive())
             Direction(heading);
     }
 

@@ -19,6 +19,7 @@ public class PlayerController : Unit
 
     protected PlayerParameters PlayerParameters => _playerParameters;
 
+    protected LookAtController LookAtController => _lookAtController;
     protected AttackController Attack => _attack;
 
     protected Skin Skin

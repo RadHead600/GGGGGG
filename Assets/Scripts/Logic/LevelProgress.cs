@@ -40,7 +40,9 @@ public class LevelProgress : Singleton<LevelProgress>
     {
         CountKillsOnLevel = 0;
         LevelProgressUI.Instance.UpdateLevelNumText(++GameInformation.Instance.Information.PassedLevel);
+#if UNITY_WEBGL && !UNITY_EDITOR
         SetToLeaderboard(GameInformation.Instance.Information.PassedLevel);
+#endif
         GameInformation.OnInformationChange?.Invoke();
     }
 

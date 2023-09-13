@@ -23,8 +23,15 @@ mergeInto(LibraryManager.library, {
     },
 
 	InitPlayer: function() {
-		if ((player.getMode() === 'lite'))
+		if (player === undefined){
+			auth();
 			return false;
+		}
+
+		if ((player.getMode() === 'lite'))
+		{
+			return false;
+		}
 		return true;
 	},
 

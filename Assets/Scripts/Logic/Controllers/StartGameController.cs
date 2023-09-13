@@ -21,7 +21,6 @@ public class StartGameController : Singleton<StartGameController>
 
     public void SetGameParams()
     {
-        ChangeLanguageController.Instance.SetLang();
         if (GameInformation.Instance.Information.PassedLevel == 0)
             GameInformation.Instance.Information.PassedLevel = 1;
 
