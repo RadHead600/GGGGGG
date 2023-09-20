@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adfcca4ddb934ba4e8678168c55e0125, type: 3}
+  m_Name: Trees
+  m_EditorClassIdentifier: 
+  _spawnPrefabs:
+  - _spawnPrefab: {fileID: 3356239398473209765, guid: c7821bc923171f24094e69062402d005,
+      type: 3}
+    _chance: 80
+  - _spawnPrefab: {fileID: -2828571852977218456, guid: dc00aab85b301f242896a77c4b442ec0,
+      type: 3}
+    _chance: 70
+  - _spawnPrefab: {fileID: 3457314559844926633, guid: d82a0024cf3346b4695544dd461fb02b,
+      type: 3}
+    _chance: 60
+  - _spawnPrefab: {fileID: 8541178282619136719, guid: 0de8a3d472546b04aa775e83b052764e,
+      type: 3}
+    _chance: 50
+  - _spawnPrefab: {fileID: -3162947349562541217, guid: fa6105287f77b1240a0017f7d23434c2,
+      type: 3}
+    _chance: 50
+  _maxCountObjects: 2
+  _minCountObjects: 1
+  _reduceReloadingTime: 0
+  _maxReloadingTime: 5
+  _minReloadingTime: 3.5

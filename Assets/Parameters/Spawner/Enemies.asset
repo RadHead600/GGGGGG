@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4905a460a836924499ad51b752ed9dba, type: 3}
+  m_Name: Enemies
+  m_EditorClassIdentifier: 
+  _spawnPrefabs:
+  - _spawnPrefab: {fileID: 147776806618312461, guid: 763560e8e8d7e8748a408dad1e62f7c4,
+      type: 3}
+    _chance: 100
+  _maxCountObjects: 10
+  _minCountObjects: 4
+  _reduceReloadingTime: 20
+  _maxReloadingTime: 3.5
+  _minReloadingTime: 3
+  _minWaves: 2
+  _numLevelForAddWaves: 2
+  _increaseEnemies: 20
+  _timeToKillInSeconds: 3
+  _additionalTime: 1.5
