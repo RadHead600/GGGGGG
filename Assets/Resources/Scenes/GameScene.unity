@@ -5447,6 +5447,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4885232651805213336, guid: 1c68d45786e842c4e8d6f44dacbd765e,
+        type: 3}
+      propertyPath: m_AspectRatio
+      value: 0.5622317
+      objectReference: {fileID: 0}
     - target: {fileID: 4885232651805213339, guid: 1c68d45786e842c4e8d6f44dacbd765e,
         type: 3}
       propertyPath: _mainMenuCanvas

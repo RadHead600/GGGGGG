@@ -187,22 +187,22 @@ MonoBehaviour:
     hide: 1
   - phrases:
     - langName: ru
-      phrase: "\u0413\u043E\u0441\u0442\u044C"
+      phrase: "\u0412\u043E\u0439\u0442\u0438 \u043A\u0430\u043A \u0433\u043E\u0441\u0442\u044C"
     - langName: en
       phrase: Guest
     - langName: tr
       phrase: Konuk
     key: _button_guest
-    hide: 1
+    hide: 0
   - phrases:
     - langName: ru
-      phrase: "\u0412\u043E\u0439\u0442\u0438"
+      phrase: "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F"
     - langName: en
       phrase: Login
     - langName: tr
       phrase: "Oturum a\xE7"
     key: _button_login
-    hide: 1
+    hide: 0
   - phrases:
     - langName: ru
       phrase: "\u0421\u0442\u0430\u0440\u0442"
