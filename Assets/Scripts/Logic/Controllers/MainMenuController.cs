@@ -32,10 +32,10 @@ public class MainMenuController : Singleton<MainMenuController>
 #if UNITY_WEBGL && !UNITY_EDITOR
         if (InitPlayer()){
             GameInformation.LoadExtern();
-            _mainMenuCanvas.SetActive(false);
             GameInformation.OnInformationChange += GameInformation.Instance.Save;
             isStarted = true;
             isOnline = true;
+            _mainMenuCanvas.SetActive(false);
         }
 #endif
     }
@@ -49,7 +49,7 @@ public class MainMenuController : Singleton<MainMenuController>
         }
         GameInformation.Instance.SetInformationFromJSON(PlayerPrefs.GetString("information"));
         GameInformation.OnInformationChange += GameInformation.Instance.Save;
-        _mainMenuCanvas.SetActive(false);
         isStarted = true;
+        _mainMenuCanvas.SetActive(false);
     }
 }

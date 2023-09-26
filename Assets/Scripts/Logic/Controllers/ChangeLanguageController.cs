@@ -13,26 +13,26 @@ public class ChangeLanguageController : Singleton<ChangeLanguageController>
         string lang = GetLang();
         if (lang == "ru")
         {
-            LangsList.SetLanguage(0);
+            LangsList.SetLanguage(0, true);
             return;
         }
         if (lang == "en")
         {
-            LangsList.SetLanguage(1);
+            LangsList.SetLanguage(1, true);
             return;
         }
         if (lang == "tr")
         {
-            LangsList.SetLanguage(2);
+            LangsList.SetLanguage(2, true);
             return;
         }
 #elif UNITY_2020_1_OR_NEWER
         if (Application.systemLanguage == SystemLanguage.Russian)
-            LangsList.SetLanguage(0);
+            LangsList.SetLanguage(0, true);
         if (Application.systemLanguage == SystemLanguage.English)
-            LangsList.SetLanguage(1);
+            LangsList.SetLanguage(1, true);
         if (Application.systemLanguage == SystemLanguage.Turkish)
-            LangsList.SetLanguage(2);
+            LangsList.SetLanguage(2, true);
 #endif
     }
 

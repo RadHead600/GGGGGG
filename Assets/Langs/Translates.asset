@@ -23,6 +23,20 @@ MonoBehaviour:
   words:
   - phrases:
     - langName: ru
+      phrase: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043C\u0435\u0442\u043E\u0434
+        \u0432\u0445\u043E\u0434\u0430. \u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044F
+        \u043F\u0440\u043E\u0438\u0441\u0445\u043E\u0434\u0438\u0442 \u043F\u0440\u0438
+        \u043F\u043E\u043C\u043E\u0449\u0438 \u044F\u043D\u0434\u0435\u043A\u0441
+        \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430."
+    - langName: en
+      phrase: Select the login method. Authorization takes place using a Yandex account.
+    - langName: tr
+      phrase: "Oturum a\xE7ma y\xF6ntemini se\xE7in. Yetkilendirme yandex hesab\u0131
+        kullan\u0131larak ger\xE7ekle\u015Fir."
+    key: _text_login_
+    hide: 0
+  - phrases:
+    - langName: ru
       phrase: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442\u0441\u044F
         \u0437\u0430 \u043F\u0440\u043E\u0445\u043E\u0436\u0434\u0435\u043D\u0438\u0435
         \u0443\u0440\u043E\u0432\u043D\u044F:"
@@ -189,9 +203,9 @@ MonoBehaviour:
     - langName: ru
       phrase: "\u0412\u043E\u0439\u0442\u0438 \u043A\u0430\u043A \u0433\u043E\u0441\u0442\u044C"
     - langName: en
-      phrase: Guest
+      phrase: Log in as a guest
     - langName: tr
-      phrase: Konuk
+      phrase: "Misafir olarak giri\u015F yap\u0131n"
     key: _button_guest
     hide: 0
   - phrases:
