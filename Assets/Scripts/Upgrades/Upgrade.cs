@@ -20,13 +20,16 @@ public class Upgrade : MonoBehaviour
     {
         CostUpgrade = _upgradesParameters.MinCost;
         Parameters = _upgradesParameters.Value;
+
+        int minUpgradeCount = 1
         
-        if (GameInformation.Instance.Information.UpgradesLevel.Count - 1 < UpgradeId)
+        if (GameInformation.Instance.Information.UpgradesLevel.Count - minUpgradeCount < UpgradeId)
         {
             for (int i = GameInformation.Instance.Information.UpgradesLevel.Count - 1; i < UpgradeId; i++)
             {
                 GameInformation.Instance.Information.UpgradesLevel.Add(0);
             }
+            
             GameInformation.OnInformationChange?.Invoke();
         }
         ResetUpgradesPointsController.OnReset += ResetLevel;
