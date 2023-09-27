@@ -11,7 +11,6 @@ public class Upgrade : MonoBehaviour
     public string LastValue { get; set; }
     public int CostUpgrade { get; set; }
     
-    // Обязательно переуказать ID апгрейда
     public int UpgradeId { get; set; }
     public int Level { get; set; }
 
