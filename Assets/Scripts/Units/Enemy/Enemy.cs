@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    [Header("Maximum the drop-down number of coins at death")]
     [SerializeField] private int _maxNumOfCoins;
-    [Header("Minimum the drop-down number of coins at death")]
     [SerializeField] private int _minNumOfCoins;
     [SerializeField] private List<DropItemParameters> _itemsParameters;
     [SerializeField] private ItemDropController _dropItem;
@@ -35,6 +33,7 @@ public class Enemy : Unit
     {
         if (Health > 0)
             return;
+            
         LevelProgress.Instance.CountKillsOnLevel += 1;
         DropItems();
 
