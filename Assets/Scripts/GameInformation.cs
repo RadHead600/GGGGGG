@@ -141,8 +141,11 @@ public class GameInformation : Singleton<GameInformation>
     }
 
     [DllImport("__Internal")]
+    
     public static extern void SaveExtern(string data);
+    
     [DllImport("__Internal")]
+    
     public static extern void LoadExtern();
 
     public static Action OnInformationChange;
@@ -168,7 +171,8 @@ public class GameInformation : Singleton<GameInformation>
 
     public void Save()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        
         if (MainMenuController.isOnline)
         {
             GameParametersLoaderUI.Instance.AddStack();
@@ -181,11 +185,12 @@ public class GameInformation : Singleton<GameInformation>
             PlayerPrefs.SetString("information", json);
             PlayerPrefs.Save();
         }
-#elif UNITY_2019_1_OR_NEWER
+        
+        #elif UNITY_2019_1_OR_NEWER
         string json = JsonUtility.ToJson(_information);
         PlayerPrefs.SetString("information", json);
         PlayerPrefs.Save();
-#endif
+        #endif
     }
 
     private void OnDestroy()
