@@ -14,7 +14,9 @@ public class LevelProgressUI : Singleton<LevelProgressUI>
 
     public void UpdateLevelNumText(int num)
     {
+        int initialProgress = 0;
+        
         _levelNumText.text = num.ToString();
-        UpdateProgressIndicator(0);
+        UpdateProgressIndicator(initialProgress);
     }
 }
