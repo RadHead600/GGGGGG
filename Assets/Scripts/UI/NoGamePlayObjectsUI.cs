@@ -15,7 +15,7 @@ public class NoGamePlayObjectsUI : MonoBehaviour
     {
         foreach (var object in _objects)
         {
-            obj.SetActive(false);
+            object.SetActive(false);
         }
     }
 
