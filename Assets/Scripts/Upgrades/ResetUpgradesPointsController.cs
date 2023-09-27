@@ -7,7 +7,7 @@ public class ResetUpgradesPointsController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private int _resetCost;
 
-    public static event Action OnReset;
+    public static event Action ResetEvent;
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class ResetUpgradesPointsController : MonoBehaviour
                 GameInformation.Instance.Information.Golds -= _resetCost;
                 GameInformation.Instance.Information.UpgradePoints += countPoints;
                 GameInformation.OnInformationChange?.Invoke();
-                OnReset?.Invoke();
+                ResetEvent?.Invoke();
             }
         }
     }
