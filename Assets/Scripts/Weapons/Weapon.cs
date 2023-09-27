@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour
         {
             if (_weaponParameters.Bullet == null)
                 return;
+                
             Bullet newBullet = Instantiate(_weaponParameters.Bullet, _posAttack.transform.position, _posAttack.transform.rotation);
 
             newBullet.Speed = _weaponParameters.AttackSpeed;
