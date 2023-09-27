@@ -18,6 +18,7 @@ public class PlayerMovement : PlayerController, IMove
     protected override void Awake()
     {
         base.Awake();
+        
         if (Instance != null)
         {
             Debug.LogError($"Exists more than 1 instance of {typeof(PlayerMovement).Name} class!");
@@ -53,6 +54,7 @@ public class PlayerMovement : PlayerController, IMove
         _moveVector.Normalize();
         Skin.Animator.SetFloat("Speed", _moveVector.magnitude);
         Skin.Animator.speed = (_moveVector.magnitude > 0 ? Speed / 10 : 1);
+        
         if (!LookAtController.Tween.IsActive())
             Direction(_moveVector);
     }
@@ -74,6 +76,7 @@ public class PlayerMovement : PlayerController, IMove
         _characterController.Move(heading * Speed * Time.deltaTime);
         Skin.Animator.SetFloat("Speed", heading.magnitude);
         Skin.Animator.speed = (heading.magnitude > 0 ? Speed / 10 : 1);
+        
         if (!LookAtController.Tween.IsActive())
             Direction(heading);
     }
