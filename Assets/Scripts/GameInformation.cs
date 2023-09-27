@@ -6,8 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Information
 {
-    [SerializeField] private int _golds;
-    [SerializeField] private int _gems;
+    [SerializeField] private int _gold;
+    [SerializeField] private int _gem;
     [SerializeField] private int _passedLevel;
     [SerializeField] private int _upgradePoints;
     [SerializeField] private int _weaponEquip;
@@ -18,21 +18,21 @@ public class Information
 
     public int Golds
     {
-        get { return _golds; }
+        get { return _gold; }
         set
         {
-            _golds = value;
-            GameInformation.Instance.ChangeGolds?.Invoke(_golds);
+            _gold = value;
+            GameInformation.Instance.ChangeGolds?.Invoke(_gold);
         }
     }
 
     public int Gems
     {
-        get { return _gems; }
+        get { return _gem; }
         set
         {
-            _gems = value;
-            GameInformation.Instance.ChangeGems?.Invoke(_gems);
+            _gem = value;
+            GameInformation.Instance.ChangeGems?.Invoke(_gem);
         }
     }
 
@@ -105,8 +105,8 @@ public class Information
 
     public void AllInvoke()
     {
-        GameInformation.Instance.ChangeGolds?.Invoke(_golds);
-        GameInformation.Instance.ChangeGems?.Invoke(_gems);
+        GameInformation.Instance.ChangeGolds?.Invoke(_gold);
+        GameInformation.Instance.ChangeGems?.Invoke(_gem);
         GameInformation.Instance.ChangePassedLevel?.Invoke(_passedLevel);
         GameInformation.Instance.ChangeUpgradePoints?.Invoke(_upgradePoints);
         GameInformation.Instance.ChangeWeaponEquip?.Invoke(_weaponEquip);
@@ -115,8 +115,8 @@ public class Information
 
     public override string ToString()
     {
-        return "Golds: " + _golds + "\n" +
-            "_gems: " + _gems + "\n" +
+        return "Golds: " + _gold + "\n" +
+            "_gem: " + _gem + "\n" +
             "_passedLevel: " + _passedLevel + "\n" +
             "_upgradePoints: " + _upgradePoints + "\n" +
             "_weaponEquip: " + _weaponEquip + "\n" +
