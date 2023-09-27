@@ -22,27 +22,36 @@ public class Upgrade : MonoBehaviour
         Parameters = _upgradesParameters.Value;
 
         int minUpgradeCount = 1
+
+        int initialUpgradeCount = 1
+
+        int initialUpgradeLevel = 0
         
         if (GameInformation.Instance.Information.UpgradesLevel.Count - minUpgradeCount < UpgradeId)
         {
-            for (int i = GameInformation.Instance.Information.UpgradesLevel.Count - 1; i < UpgradeId; i++)
+            for (int i = GameInformation.Instance.Information.UpgradesLevel.Count - initialUpgradeCount; i < UpgradeId; i++)
             {
-                GameInformation.Instance.Information.UpgradesLevel.Add(0);
+                GameInformation.Instance.Information.UpgradesLevel.Add(initialUpgradeLevel);
             }
             
             GameInformation.OnInformationChange?.Invoke();
         }
+        
         ResetUpgradesPointsController.OnReset += ResetLevel;
         ResetUpgradesPointsController.OnReset += SetUpgradeLevel;
     }
 
     protected bool UpLevel()
     {
-        bool isLiquid = GameInformation.Instance.Information.UpgradePoints - CostUpgrade >= 0;
+        int minimumUpgradePointsRequired = 0;
+
+        int upgradeIncrement = 1;
+    
+        bool isLiquid = GameInformation.Instance.Information.UpgradePoints - CostUpgrade >= minimumUpgradePointsRequired;
         
         if (isLiquid)
         {
-            GameInformation.Instance.Information.UpgradesLevel[UpgradeId] += 1;
+            GameInformation.Instance.Information.UpgradesLevel[UpgradeId] += upgradeIncrement;
             GameInformation.Instance.Information.UpgradePoints -= CostUpgrade;
             GameInformation.OnInformationChange?.Invoke();
         }
@@ -60,7 +69,9 @@ public class Upgrade : MonoBehaviour
 
     protected void ResetLevel()
     {
-        Level = 1;
+        int initialLevel = 1;
+    
+        Level = initialLevel;
     }
 
     protected virtual void OnDestroy()
