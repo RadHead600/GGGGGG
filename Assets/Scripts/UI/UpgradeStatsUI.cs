@@ -7,6 +7,7 @@ public class UpgradeStatsUI : UpgradeUICard
             InfoText.text = CardInformation.LastValue;
             return;
         }
+        
         private int decimalPlaces = 2;
         
         InfoText.text = System.Math.Round(System.Convert.ToDouble
