@@ -89,12 +89,18 @@ public class PlayerMovement : PlayerController, IMove
 
     void JoystickMove()
     {
+        private float speedMultiplierWithMovement = 10.0f;
+        
+        private float defaultSpeedMultiplier = 1.0f;
+
+        private float defaultvalue = 0.0f;
+        
         Vector3 rightMovement = _right * Speed * Time.deltaTime * _moveJoystick.Direction.x;
         Vector3 upMovement = _forward * Speed * Time.deltaTime * _moveJoystick.Direction.y;
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
         _characterController.Move(heading * Speed * Time.deltaTime);
         Skin.Animator.SetFloat("Speed", heading.magnitude);
-        Skin.Animator.speed = (heading.magnitude > 0 ? Speed / 10 : 1);
+        Skin.Animator.speed = (heading.magnitude > defaultvalue ? Speed / speedMultiplierWithMovement : defaultSpeedMultiplier);
         
         if (!LookAtController.Tween.IsActive())
             Direction(heading);
