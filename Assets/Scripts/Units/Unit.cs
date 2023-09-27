@@ -47,6 +47,7 @@ public class Unit : MonoBehaviour
     {
         if (_health - amount < 0)
             return;
+            
         Health -= amount;
     }
 
@@ -72,6 +73,7 @@ public class Unit : MonoBehaviour
     {
         if (Health > 0)
             return;
+            
         OnDeath?.Invoke();
         Destroy(gameObject);
     }
