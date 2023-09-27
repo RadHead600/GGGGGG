@@ -13,7 +13,7 @@ public class NoGamePlayObjectsUI : MonoBehaviour
 
     public void ClosePanels()
     {
-        foreach (var obj in _objects)
+        foreach (var object in _objects)
         {
             obj.SetActive(false);
         }
@@ -21,7 +21,7 @@ public class NoGamePlayObjectsUI : MonoBehaviour
 
     public void OpenPanels()
     {
-        foreach (var obj in _objects)
+        foreach (var object in _objects)
         {
             obj.SetActive(true);
         }
