@@ -23,18 +23,22 @@ public class EnemyAI : Enemy
 
     private void FixedUpdate()
     {
+        private float normalSpeed = 1.0f; 
+        
+        private float zeroSpeed = 0.0f;
+        
         if (_aIMoveTo.IsJump() != isJumping)
         {
-            Skin.Animator.speed = 1;
+            Skin.Animator.speed = normalSpeed;
             Skin.Animator.SetBool("Jump", _aIMoveTo.IsJump());
             isJumping = _aIMoveTo.IsJump();
             return;
         }
         if (Attack.IsAttack)
         {
-            Skin.Animator.speed = 1;
+            Skin.Animator.speed = normalSpeed;
             _aIMoveTo.StopMove();
-            Skin.Animator.SetFloat("Speed", 0);
+            Skin.Animator.SetFloat("Speed", zeroSpeed);
             isAttacking = true;
             return;
         }
@@ -50,7 +54,6 @@ public class EnemyAI : Enemy
             Skin.Animator.SetFloat("Speed", NavMeshAgent.speed);
         }
     }
-
 
     protected override void OnDestroy()
     {
