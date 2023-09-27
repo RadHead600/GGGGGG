@@ -32,20 +32,32 @@ public class PointsTimer : Singleton<PointsTimer>
 
     private IEnumerator TimerUpdate()
     {
-        yield return new WaitForSeconds(1);
-        _time -= 1;
-        if (_time <= 0)
+        private float updateInterval = 1f; 
+        
+        private float minimumTimeValue = 0f;
+
+        private float timeToSubtract = 1f;
+
+        private float remainingTimeThreshold = 0f;
+        
+        yield return new WaitForSeconds(updateInterval);
+        _time -= timeToSubtract;
+        
+        if (_time <= minimumTimeValue)
         {
-            OnTimerUpdate?.Invoke(0);
+            OnTimerUpdate?.Invoke(remainingTimeThreshold);
             yield break;
         }
+        
         OnTimerUpdate?.Invoke(GetPercentOfTotalTime());
         _timerCoroutine = StartCoroutine(TimerUpdate());
     }
 
     private float GetPercentOfTotalTime()
     {
-        return 1 - ((_startTime - _time) / _startTime);
+        private float maxPercentage = 1f;
+        
+        return maxPercentage - ((_startTime - _time) / _startTime);
     }
 
     private void OnDestroy()
