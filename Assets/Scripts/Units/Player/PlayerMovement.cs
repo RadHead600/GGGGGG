@@ -36,24 +36,39 @@ public class PlayerMovement : PlayerController, IMove
 
     private void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        private float inputThreshold = 0.01f;
+
+        private float gravityAdjustment = -0.1f;
+
+        private float zeroValue = 0.0f;
+        
+        if (Input.GetAxis("Horizontal") != inputThreshold || Input.GetAxis("Vertical") != inputThreshold)
             Move();
         else if (_moveJoystick != null)
             JoystickMove();
         if (!_characterController.isGrounded)
-            _characterController.Move(new Vector3(0, -0.1f, 0));
+            _characterController.Move(new Vector3(zeroValue, gravityAdjustment, zeroValue));
     }
 
     public void Move()
     {
+        private float zeroValue = 0.0f;
+        
+        private float gravityValue = -1.0f;
+
+        private float speedMultiplierWithMovement = 10.0f;
+        
+        private float defaultSpeedMultiplier = 1.0f;
+        
         _moveVector = Vector3.zero;
         _moveVector.x = Input.GetAxis("Horizontal") * Speed;
-        _moveVector.y = _characterController.isGrounded ? 0 : -1;
+        _moveVector.y = _characterController.isGrounded ? zeroValue : gravityValue;
         _moveVector.z = Input.GetAxis("Vertical") * Speed;
         _characterController.Move(_moveVector * Time.deltaTime);
         _moveVector.Normalize();
         Skin.Animator.SetFloat("Speed", _moveVector.magnitude);
-        Skin.Animator.speed = (_moveVector.magnitude > 0 ? Speed / 10 : 1);
+        Skin.Animator.speed = (_moveVector.magnitude > zeroValue ? 
+        Speed / speedMultiplierWithMovement : defaultSpeedMultiplier);
         
         if (!LookAtController.Tween.IsActive())
             Direction(_moveVector);
@@ -61,11 +76,15 @@ public class PlayerMovement : PlayerController, IMove
 
     void RecalculateCamera(Camera _cam)
     {
+        private float zeroAngle = 0.0f;
+        
+        private float ninetyDegrees = 90.0f;
+        
         Camera cam = _cam;
         _fwd = cam.transform.forward;
-        _fwd.y = 0;
+        _fwd.y = zeroAngle;
         _fwd = Vector3.Normalize(_fwd);
-        _right = Quaternion.Euler(new Vector3(0, 90, 0)) * _fwd;
+        _right = Quaternion.Euler(new Vector3(zeroAngle, ninetyDegrees, zeroAngle)) * _fwd;
     }
 
     void JoystickMove()
