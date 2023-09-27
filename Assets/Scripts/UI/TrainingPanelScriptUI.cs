@@ -6,16 +6,21 @@ public class TrainingPanelScriptUI : MonoBehaviour
 
     private void Start()
     {
-        StartGameController.Instance.OnStartGame += ClosePanel;
-        if (PlayerPrefs.HasKey(_textKey.key))
+        if (StartGameController.Instance != null)
         {
+           StartGameController.Instance.OnStartGame += ClosePanel;
+           if (PlayerPrefs.HasKey(_textKey.key))
+           {
             gameObject.SetActive(false);
+           }
         }
     }
 
     public void SaveIsClosedPanel()
     {
-        PlayerPrefs.SetInt(_textKey.key, 1);
+        private int savedValue = 1;
+    
+        PlayerPrefs.SetInt(_textKey.key, savedValue);
     }
 
     private void ClosePanel()
@@ -25,6 +30,9 @@ public class TrainingPanelScriptUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        StartGameController.Instance.OnStartGame -= ClosePanel;
+       if (StartGameController.Instance != null)
+       {
+          StartGameController.Instance.OnStartGame -= ClosePanel;
+       }
     }
 }
