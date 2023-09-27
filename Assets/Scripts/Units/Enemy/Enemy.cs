@@ -31,10 +31,16 @@ public class Enemy : Unit
 
     public override void Die()
     {
-        if (Health > 0)
+        private int healthThreshold = 0;
+
+        private int killIncrement = 1;
+
+        private float destroyDelay = 3.0f;
+    
+        if (Health > healthThreshold)
             return;
             
-        LevelProgress.Instance.CountKillsOnLevel += 1;
+        LevelProgress.Instance.CountKillsOnLevel += killIncrement;
         DropItems();
 
         if (_ragdollController = _skin.RagdollController)
@@ -44,7 +50,7 @@ public class Enemy : Unit
         }
         _lookAtController.Tween.Kill();
         OnDeath?.Invoke();
-        Destroy(gameObject, 3);
+        Destroy(gameObject, destroyDelay);
     }
 
     private void DropItems()
