@@ -83,7 +83,7 @@ public class PlayerMovement : PlayerController, IMove
         Camera cam = _cam;
         _forward = cam.transform.forward;
         _forward.y = zeroAngle;
-        _forward = Vector3.Normalize(_fwd);
+        _forward = Vector3.Normalize(_forward);
         _right = Quaternion.Euler(new Vector3(zeroAngle, ninetyDegrees, zeroAngle)) * _forward;
     }
 
