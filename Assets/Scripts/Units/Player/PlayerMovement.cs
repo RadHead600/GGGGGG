@@ -10,7 +10,7 @@ public class PlayerMovement : PlayerController, IMove
     [SerializeField] private Vector3 _rotateOffset;
 
     private Vector3 _moveVector;
-    private Vector3 _fwd, _right;
+    private Vector3 _forward, _right;
 
     public static PlayerMovement Instance { get; private set; }
     public Vector3 MoveVector => _moveVector;
@@ -81,16 +81,16 @@ public class PlayerMovement : PlayerController, IMove
         private float ninetyDegrees = 90.0f;
         
         Camera cam = _cam;
-        _fwd = cam.transform.forward;
-        _fwd.y = zeroAngle;
-        _fwd = Vector3.Normalize(_fwd);
-        _right = Quaternion.Euler(new Vector3(zeroAngle, ninetyDegrees, zeroAngle)) * _fwd;
+        _forward = cam.transform.forward;
+        _forward.y = zeroAngle;
+        _forward = Vector3.Normalize(_fwd);
+        _right = Quaternion.Euler(new Vector3(zeroAngle, ninetyDegrees, zeroAngle)) * _forward;
     }
 
     void JoystickMove()
     {
         Vector3 rightMovement = _right * Speed * Time.deltaTime * _moveJoystick.Direction.x;
-        Vector3 upMovement = _fwd * Speed * Time.deltaTime * _moveJoystick.Direction.y;
+        Vector3 upMovement = _forward * Speed * Time.deltaTime * _moveJoystick.Direction.y;
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
         _characterController.Move(heading * Speed * Time.deltaTime);
         Skin.Animator.SetFloat("Speed", heading.magnitude);
