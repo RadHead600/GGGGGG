@@ -8,7 +8,7 @@ public class EnemyAI : Enemy
 
     public NavMeshAgent NavMeshAgent => _aIMoveTo.NavMeshAgent;
     private bool isJumping;
-    private bool isAttack;
+    private bool isAttacking;
 
     protected override void Awake()
     {
@@ -35,13 +35,13 @@ public class EnemyAI : Enemy
             Skin.Animator.speed = 1;
             _aIMoveTo.StopMove();
             Skin.Animator.SetFloat("Speed", 0);
-            isAttack = true;
+            isAttacking = true;
             return;
         }
-        if (isAttack)
+        if (isAttacking)
         {
             _aIMoveTo.Move();
-            isAttack = false;
+            isAttacking = false;
             return;
         }
         if (Skin.Animator.speed != NavMeshAgent.speed)
