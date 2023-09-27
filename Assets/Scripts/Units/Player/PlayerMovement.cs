@@ -74,14 +74,14 @@ public class PlayerMovement : PlayerController, IMove
             Direction(_moveVector);
     }
 
-    void RecalculateCamera(Camera _cam)
+    void RecalculateCamera(Camera _camera)
     {
         private float zeroAngle = 0.0f;
         
         private float ninetyDegrees = 90.0f;
         
-        Camera cam = _cam;
-        _forward = cam.transform.forward;
+        Camera camera = _camera;
+        _forward = camera.transform.forward;
         _forward.y = zeroAngle;
         _forward = Vector3.Normalize(_forward);
         _right = Quaternion.Euler(new Vector3(zeroAngle, ninetyDegrees, zeroAngle)) * _forward;
