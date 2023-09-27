@@ -32,6 +32,7 @@ public class PlayerItemUpdate : MonoBehaviour
     {
         if (item == null)
             return;
+            
         GameObject weapon = Instantiate(item);
         weapon.transform.parent = _hand.transform;
         weapon.transform.localScale = Vector3.one;
