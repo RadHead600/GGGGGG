@@ -7,7 +7,7 @@ public class EnemyAI : Enemy
     [SerializeField] private AIMoveTo _aIMoveTo;
 
     public NavMeshAgent NavMeshAgent => _aIMoveTo.NavMeshAgent;
-    private bool isJump;
+    private bool isJumping;
     private bool isAttack;
 
     protected override void Awake()
@@ -23,11 +23,11 @@ public class EnemyAI : Enemy
 
     private void FixedUpdate()
     {
-        if (_aIMoveTo.IsJump() != isJump)
+        if (_aIMoveTo.IsJump() != isJumping)
         {
             Skin.Animator.speed = 1;
             Skin.Animator.SetBool("Jump", _aIMoveTo.IsJump());
-            isJump = _aIMoveTo.IsJump();
+            isJumping = _aIMoveTo.IsJump();
             return;
         }
         if (Attack.IsAttack)
