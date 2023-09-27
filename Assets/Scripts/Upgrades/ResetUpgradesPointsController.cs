@@ -19,11 +19,13 @@ public class ResetUpgradesPointsController : MonoBehaviour
         if (GameInformation.Instance != null && GameInformation.Instance.Information.Golds - _resetCost >= 0)
         {
             int countPoints = 0;
+            
             for (int i = 0; i < GameInformation.Instance.Information.UpgradesLevel.Count; i++)
             {
                 countPoints += GameInformation.Instance.Information.UpgradesLevel[i];
                 GameInformation.Instance.Information.UpgradesLevel[i] = 0;
             }
+            
             if (countPoints > 0)
             {
                 GameInformation.Instance.Information.Golds -= _resetCost;
