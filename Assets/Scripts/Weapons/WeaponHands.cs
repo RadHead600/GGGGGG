@@ -3,15 +3,15 @@ using UnityEngine;
 public class WeaponHands : Weapon
 {
     public Collider[] EnemyColliders { get; set; }
-    private Unit _unit;
+    private Enemy _enemy;
 
     public override void Attack()
     {
         foreach (Collider collider in EnemyColliders)
         {
-            if (_unit = collider.gameObject.GetComponentInChildren<Unit>())
+            if (_enemy = collider.gameObject.GetComponentInChildren<Unit>())
             {
-                _unit.TakeDamage(WeaponParameters.AttackDamage);
+                _enemy.TakeDamage(WeaponParameters.AttackDamage);
                 TimerBulletDelay = WeaponParameters.AttackDelay;
                 return;
             }
