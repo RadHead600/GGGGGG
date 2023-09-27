@@ -2,7 +2,9 @@ public class UpgradeAddPlayerHealthPoints : UpgradeAddHealthPoints
 {
     protected override void Awake()
     {
-        UpgradeId = 0;
+        int initialUpgradeId = 0;
+        
+        UpgradeId = initialUpgradeId;
         base.Awake();
         Level = GameInformation.Instance.Information.UpgradesLevel[UpgradeId];
     }
