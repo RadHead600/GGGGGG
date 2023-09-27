@@ -20,6 +20,7 @@ public class Upgrade : MonoBehaviour
     {
         CostUpgrade = _upgradesParameters.MinCost;
         Parameters = _upgradesParameters.Value;
+        
         if (GameInformation.Instance.Information.UpgradesLevel.Count - 1 < UpgradeId)
         {
             for (int i = GameInformation.Instance.Information.UpgradesLevel.Count - 1; i < UpgradeId; i++)
@@ -35,6 +36,7 @@ public class Upgrade : MonoBehaviour
     protected bool UpLevel()
     {
         bool isLiquid = GameInformation.Instance.Information.UpgradePoints - CostUpgrade >= 0;
+        
         if (isLiquid)
         {
             GameInformation.Instance.Information.UpgradesLevel[UpgradeId] += 1;
