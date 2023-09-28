@@ -94,6 +94,7 @@ public class Shop : MonoBehaviour
                 if (GameInformation.Instance.Information.PassedLevel < cost)
                     return;
                 break;
+                
             default:
                 return;
         }
