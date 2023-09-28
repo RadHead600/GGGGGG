@@ -16,6 +16,7 @@ public class RagdollController : MonoBehaviour
     public void EnablePhysics()
     {
         _animator.enabled = false;
+        
         for (int i = 0; i < ragdollElements.Count; i++)
         {
             ragdollElements[i].isKinematic = false;
@@ -25,6 +26,7 @@ public class RagdollController : MonoBehaviour
     public void DisablePhysics()
     {
         _animator.enabled = true;
+        
         for (int i = 0; i < ragdollElements.Count; i++)
         {
             ragdollElements[i].isKinematic = true;
