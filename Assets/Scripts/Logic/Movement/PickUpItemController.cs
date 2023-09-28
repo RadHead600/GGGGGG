@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class PickUpItemController : MonoBehaviour
 {
+    private const int DefaultLayer = 0;
+    private const float DefaultMagniteRange = 100f;
+    private const float ClearMagniteRange = 0;
+    
     [SerializeField] private LayerMask _itemLayers;
     [SerializeField] private float _magniteRange;
     [SerializeField] private float _itemLiftingTime;
@@ -17,7 +21,7 @@ public class PickUpItemController : MonoBehaviour
         foreach (var collider in colliders)
         {
             Item item = collider.gameObject.GetComponent<Item>();
-            item.gameObject.layer = 0;
+            item.gameObject.layer = DefaultLayer;
             item.Tween.SetAutoKill(false);
             item.Tween = item.transform.DOMove(transform.position, _itemLiftingTime)
                 .OnUpdate(() =>
@@ -33,9 +37,9 @@ public class PickUpItemController : MonoBehaviour
                 });
         }
 
-        if (colliders.Length == 0 && _magniteRange >= 100)
+        if (colliders.Length == DefaultLayer && _magniteRange >= DefaultMagniteRange)
         {
-            _magniteRange = 0;
+            _magniteRange = ClearMagniteRange;
             GameInformation.OnInformationChange?.Invoke();
         }
     }
