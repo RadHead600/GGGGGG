@@ -3,17 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpawnerEnemiesParameters", menuName = "CustomParameters/SpawnerParameters/SpawnerEnemiesParameters")]
 public class SpawnerEnemiesParameters : SpawnerParameters
 {
-    [Header("The starting _value of the waves at the level of.")]
-    [SerializeField][Min(0)] private int _minWaves;
-    [Header("The number of completed levels to add a wave.")]
-    [SerializeField][Min(0)] private int _numLevelForAddWaves;
-    [Header("How many percent increases the number of enemies in the wave at the next level.")]
-    [SerializeField][Min(0)] private int _increaseEnemies;
-    [Header("Time to sweep the wave In seconds.")]
+     private int _minValue = 0;
+     
+    [SerializeField][Min(_minValue)] private int _minWaves;
+    [SerializeField][Min(_minValue)] private int _numLevelForAddWaves;
+    [SerializeField][Min(_minValue)] private int _increaseEnemies;
     [SerializeField] private int _timeToKillInSeconds;
-    [Header("Coefficient of additional time for cleaning.")]
     [SerializeField] private float _additionalTime;
 
+    public int MinValue => _minValue;
     public int MinWaves => _minWaves;
     public int NumLevelForAddWaves => _numLevelForAddWaves;
     public int IncreaseEnemies => _increaseEnemies;
