@@ -17,17 +17,17 @@ public class MainMenuController : Singleton<MainMenuController>
         {
             if (isOnline)
             {
-                OnlineLogin();
+                StartOnlineSession();
             }
             else
             {
-                GuestLogin();
+                StartGuestSession();
             }
             _mainMenuCanvas.SetActive(false);
         }
     }
 
-    public void OnlineLogin()
+    public void StartOnlineSession()
     {
         #if UNITY_WEBGL && !UNITY_EDITOR
         
@@ -43,7 +43,7 @@ public class MainMenuController : Singleton<MainMenuController>
         #endif
     }
 
-    public void GuestLogin()
+    public void StartGuestSession()
     {
         if (!PlayerPrefs.HasKey("information"))
         {
