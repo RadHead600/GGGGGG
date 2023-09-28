@@ -8,7 +8,6 @@ public class StartGameController : Singleton<StartGameController>
     private const int DefaultPassedLevel = 1;
     private const int DefaultSkin = 0;
     private const int DefaultWeapon = 0;
-    private const float DefaultTime = 0f;
     
     [SerializeField] private List<Shop> _shops;
     [SerializeField] private List<EnemySpawner> _enemySpawners;
