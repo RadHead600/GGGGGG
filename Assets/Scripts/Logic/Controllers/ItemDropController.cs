@@ -8,14 +8,19 @@ public class ItemDropController : MonoBehaviour
 
     public void DropItems(Item item, int minCountDrops, int maxCountDrops)
     {
-        for (int i = 0; i < Random.Range(minCountDrops, maxCountDrops + 1); i++)
+        float timeForStopKinematic = 1;
+
+        int minimumPositionValueEachAxis = 0;
+        
+        for (int i = 0; i < Random.Range(minCountDrops, maxCountDrops + _timeForStopKinematic); i++)
         {
             Item itemObj = Instantiate(item, transform.position, transform.rotation);
             Vector3 randomPosition = new Vector3(
-                Random.Range(0, _rangeDrop),
-                Random.Range(0, _rangeDrop),
-                Random.Range(0, _rangeDrop)
+                Random.Range(minimumPositionValueEachAxis, _rangeDrop),
+                Random.Range(minimumPositionValueEachAxis, _rangeDrop),
+                Random.Range(minimumPositionValueEachAxis, _rangeDrop)
             );
+            
             StartCoroutine(ChangeKinematic(itemObj.Rigidbody, randomPosition));
         }
     }
