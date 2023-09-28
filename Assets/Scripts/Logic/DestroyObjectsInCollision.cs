@@ -6,7 +6,10 @@ public class DestroyObjectsInCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.layer & (1 << _layers)) != 0)
+        private int _layerMaskZero = 0;
+        private int _layerMaskOne = 1;
+        
+        if ((other.gameObject.layer & (_layerMaskOne << _layers)) != _layerMaskZero)
         {
             Destroy(other.gameObject);
         }
