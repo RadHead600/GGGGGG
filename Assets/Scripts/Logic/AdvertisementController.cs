@@ -20,11 +20,16 @@ public class AdvertisementController : Singleton<AdvertisementController>
 
     protected override void Awake()
     {
+        private int _frequencyLevelsDisplayingAdvertisements = 3;
+
+        private int _equalizer = 0;
+        
         base.Awake();
         _buttonRewardVideo.onClick.AddListener(() => RewardedVideo());
         _buttonInternalVideo.onClick.AddListener(() =>
         {
-            if (GameInformation.Instance.Information.PassedLevel % 3 == 0 && !isViewed) // показывать рекламу каждый третий уровень при нажатии
+            if (GameInformation.Instance.Information.PassedLevel %
+            _frequencyLevelsDisplayingAdvertisements == _equalizer && !isViewed)
             {
                 isViewed = true;
                 Internal();
@@ -52,25 +57,30 @@ public class AdvertisementController : Singleton<AdvertisementController>
 
     private void StopLevel()
     {
-        Time.timeScale = 0;
-        if (AudioListener.volume > 0)
+        private  float _zeroVolume = 0f;
+        
+        Time.timeScale = _zeroVolume;
+        
+        if (AudioListener.volume > _zeroVolume)
         {
             isSetAudioListener = true;
-            AudioListenerController.Instance.SetAudioListerner(0);
+            AudioListenerController.Instance.SetAudioListerner(_zeroVolume);
         }
     }
 
     public void CloseAdvertisement()
     {
-        Time.timeScale = 1;
+        private  float _maxVolume = 1f;
+    
+        Time.timeScale = _maxVolume;
+        
         if (isSetAudioListener)
         {
-            AudioListenerController.Instance.SetAudioListerner(1);
+            AudioListenerController.Instance.SetAudioListerner(_maxVolume);
             isSetAudioListener = false;
         }
     }
 
-    // количество рекламной валюты настраивается в jslib документе в вызове функции 
     public void AddGems(int value)
     {
         GameInformation.Instance.Information.Gems += value;
