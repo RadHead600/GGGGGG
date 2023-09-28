@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class GameParametersLoaderUI : Singleton<GameParametersLoaderUI>
 {
+    private const int LoaderActiveState = 1;
+    private const int LoaderInactiveState = 0;
+    
     [SerializeField] private Image _loaderImage;
     
     private int _stackLoader;
@@ -14,15 +17,15 @@ public class GameParametersLoaderUI : Singleton<GameParametersLoaderUI>
 
     public void AddStack()
     {
-        _stackLoader += 1;
+        _stackLoader += LoaderActiveState;
         Loading(true);
     }
 
     public void TakeStack()
     {
-        if (_stackLoader > 0)
-            _stackLoader -= 1;
-        if (_stackLoader == 0)
+        if (_stackLoader > LoaderInactiveState)
+            _stackLoader -= LoaderActiveState;
+        if (_stackLoader == LoaderInactiveState)
             Loading(false);
     }
 }
