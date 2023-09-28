@@ -32,13 +32,15 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     protected virtual void Start()
     {
+        private float _defaultPivot = 0.5f;
+        
         HandleRange = _handleRange;
         DeadZone = _deadZone;
         
         if (_canvas == null)
             Debug.LogError("The Joystick is not placed inside a _canvas");
 
-        Vector2 center = new Vector2(0.5f, 0.5f);
+        Vector2 center = new Vector2(_defaultPivot, _defaultPivot);
         _background.pivot = center;
         _handle.anchorMin = center;
         _handle.anchorMax = center;
@@ -48,13 +50,15 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public void OnDrag(PointerEventData eventData)
     {
+        private float _preferableRadius = 2.0f;
+        
         _camera = null;
         
         if (_canvas.renderMode == RenderMode.ScreenSpaceCamera)
             _camera = _canvas.worldCamera;
 
         Vector2 position = RectTransformUtility.WorldToScreenPoint(_camera, _background.position);
-        Vector2 radius = _background.sizeDelta / 2;
+        Vector2 radius = _background.sizeDelta / _preferableRadius;
         _input = (eventData.position - position) / (radius * _canvas.scaleFactor);
         HandleInput(_input.magnitude, _input.normalized, radius, _camera);
         _handle.anchoredPosition = _input * radius * _handleRange;
@@ -62,9 +66,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     protected void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
+        private float _magnitudeThreshold = 1.0f;
+        
         if (magnitude > _deadZone)
         {
-            if (magnitude > 1)
+            if (magnitude > _magnitudeThreshold)
                 _input = normalised;
         }
         else
