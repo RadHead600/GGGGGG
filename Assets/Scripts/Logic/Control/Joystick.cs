@@ -12,7 +12,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     [SerializeField] private RectTransform _baseRect = null;
     [SerializeField] private Canvas _canvas;
 
-    private Camera _cam;
+    private Camera _camera;
 
     private Vector2 _input = Vector2.zero;
 
@@ -48,15 +48,15 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public void OnDrag(PointerEventData eventData)
     {
-        _cam = null;
+        _camera = null;
         
         if (_canvas.renderMode == RenderMode.ScreenSpaceCamera)
-            _cam = _canvas.worldCamera;
+            _camera = _canvas.worldCamera;
 
-        Vector2 position = RectTransformUtility.WorldToScreenPoint(_cam, _background.position);
+        Vector2 position = RectTransformUtility.WorldToScreenPoint(_camera, _background.position);
         Vector2 radius = _background.sizeDelta / 2;
         _input = (eventData.position - position) / (radius * _canvas.scaleFactor);
-        HandleInput(_input.magnitude, _input.normalized, radius, _cam);
+        HandleInput(_input.magnitude, _input.normalized, radius, _camera);
         _handle.anchoredPosition = _input * radius * _handleRange;
     }
 
@@ -94,7 +94,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         Vector2 localPoint = Vector2.zero;
         
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_baseRect, screenPosition, _cam, out localPoint))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_baseRect, screenPosition, _camera, out localPoint))
         {
             Vector2 pivotOffset = _baseRect.pivot * _baseRect.sizeDelta;
             return localPoint - (_background.anchorMax * _baseRect.sizeDelta) + pivotOffset;
