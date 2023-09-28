@@ -7,6 +7,7 @@ public class TakeUpgradePoints : Singleton<TakeUpgradePoints>
     public void TakeGems()
     {
         var timer = PointsTimer.Instance;
+        
         foreach (float gemTime in _upgradePointsParameters.TimesToPoints)
         {
             if (gemTime <= timer.RemainingTimeInProcent)
