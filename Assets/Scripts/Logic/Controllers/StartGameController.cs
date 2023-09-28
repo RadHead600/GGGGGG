@@ -26,6 +26,11 @@ public class StartGameController : Singleton<StartGameController>
 
     public void SetGameParams()
     {
+        int elementaryLevel = 1; 
+        int starterPassedLevel = 1; 
+        int starterSkin = 0; 
+        int starterWeapon = 0; 
+        
         ChangeLanguageController.Instance.SetLanguage();
         
         if (GameInformation.Instance.Information.PassedLevel == InitialLevel)
@@ -39,8 +44,8 @@ public class StartGameController : Singleton<StartGameController>
             };
         }
 
-        _shops[1].UnlockItems(GameInformation.Instance.Information.SkinsBought);
-        _shops[1].Equip(GameInformation.Instance.Information.SkinEquip);
+        _shops[elementaryLevel].UnlockItems(GameInformation.Instance.Information.SkinsBought);
+        _shops[starterPassedLevel].Equip(GameInformation.Instance.Information.SkinEquip);
 
         if (GameInformation.Instance.Information.WeaponsBought == null)
         {
@@ -49,8 +54,8 @@ public class StartGameController : Singleton<StartGameController>
                 DefaultWeapon
             };
         }
-        _shops[0].UnlockItems(GameInformation.Instance.Information.WeaponsBought);
-        _shops[0].Equip(GameInformation.Instance.Information.WeaponEquip);
+        _shops[starterSkin].UnlockItems(GameInformation.Instance.Information.WeaponsBought);
+        _shops[starterWeapon].Equip(GameInformation.Instance.Information.WeaponEquip);
         LevelProgressUI.Instance.UpdateLevelNumText(GameInformation.Instance.Information.PassedLevel);
         _upgradeCanvas.gameObject.SetActive(true);
     }
@@ -59,6 +64,7 @@ public class StartGameController : Singleton<StartGameController>
     {
         int countKillsOnLevel = 0;
         float time = 0;
+        float additionalTime = 1;
         
         foreach (var spawner in _spawners)
             spawner.StartSpawner();
@@ -70,7 +76,8 @@ public class StartGameController : Singleton<StartGameController>
         {
             SpawnerEnemiesParameters spawnerParameters = (SpawnerEnemiesParameters)enemySpawner.SpawnerParameters;
             countKillsOnLevel = enemySpawner.ObjectsCount * enemySpawner.WavesToPassed;
-            time = (spawnerParameters.TimeToKillInSeconds * countKillsOnLevel + (enemySpawner.WavesToPassed * enemySpawner.EnemiesReloadingTime + 1)) * spawnerParameters.AdditionalTime;
+            time = (spawnerParameters.TimeToKillInSeconds * countKillsOnLevel + 
+            (enemySpawner.WavesToPassed * enemySpawner.EnemiesReloadingTime + additionalTime)) * spawnerParameters.AdditionalTime;
         }
         LevelProgress.Instance.RequiredNumberOfKills = countKillsOnLevel;
         
