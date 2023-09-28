@@ -29,15 +29,18 @@ public class MainMenuController : Singleton<MainMenuController>
 
     public void OnlineLogin()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        
         if (InitPlayer()){
             GameInformation.LoadExtern();
+            
             GameInformation.OnInformationChange += GameInformation.Instance.Save;
             isStarted = true;
             isOnline = true;
             _mainMenuCanvas.SetActive(false);
         }
-#endif
+        
+        #endif
     }
 
     public void GuestLogin()
@@ -47,6 +50,7 @@ public class MainMenuController : Singleton<MainMenuController>
             GameInformation.Instance.SetInformationFromJSON(JsonUtility.ToJson(new Information()));
             GameInformation.Instance.Save();
         }
+        
         GameInformation.Instance.SetInformationFromJSON(PlayerPrefs.GetString("information"));
         GameInformation.OnInformationChange += GameInformation.Instance.Save;
         isStarted = true;
