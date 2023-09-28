@@ -16,6 +16,7 @@ public class LevelProgress : Singleton<LevelProgress>
             _countKillsOnLevel = value;
             float progress = (float)_countKillsOnLevel / RequiredNumberOfKills;
             LevelProgressUI.Instance.UpdateProgressIndicator(progress);
+            
             if (progress >= 1)
             {
                 OnCompletedLevel?.Invoke();
@@ -38,9 +39,13 @@ public class LevelProgress : Singleton<LevelProgress>
     {
         CountKillsOnLevel = 0;
         LevelProgressUI.Instance.UpdateLevelNumText(++GameInformation.Instance.Information.PassedLevel);
-#if UNITY_WEBGL && !UNITY_EDITOR
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        
         SetToLeaderboard(GameInformation.Instance.Information.PassedLevel);
-#endif
+        
+        #endif
+        
         GameInformation.OnInformationChange?.Invoke();
     }
 
