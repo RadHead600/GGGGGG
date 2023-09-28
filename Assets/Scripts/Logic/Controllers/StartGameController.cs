@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class StartGameController : Singleton<StartGameController>
 {
+    private const int InitialLevel = 0;
+    private const int DefaultPassedLevel = 1;
+    private const int DefaultSkin = 0;
+    private const int DefaultWeapon = 0;
+    private const float DefaultTime = 0f;
+    
     [SerializeField] private List<Shop> _shops;
     [SerializeField] private List<EnemySpawner> _enemySpawners;
     [SerializeField] private List<Spawner> _spawners;
@@ -22,14 +28,15 @@ public class StartGameController : Singleton<StartGameController>
     public void SetGameParams()
     {
         ChangeLanguageController.Instance.SetLanguage();
-        if (GameInformation.Instance.Information.PassedLevel == 0)
-            GameInformation.Instance.Information.PassedLevel = 1;
+        
+        if (GameInformation.Instance.Information.PassedLevel == InitialLevel)
+            GameInformation.Instance.Information.PassedLevel = DefaultPassedLevel;
 
         if (GameInformation.Instance.Information.SkinsBought == null)
         {
             GameInformation.Instance.Information.SkinsBought = new List<int>
             {
-                0
+                 DefaultSkin
             };
         }
 
@@ -40,7 +47,7 @@ public class StartGameController : Singleton<StartGameController>
         {
             GameInformation.Instance.Information.WeaponsBought = new List<int>
             {
-                0
+                DefaultWeapon
             };
         }
         _shops[0].UnlockItems(GameInformation.Instance.Information.WeaponsBought);
@@ -53,6 +60,7 @@ public class StartGameController : Singleton<StartGameController>
     {
         int countKillsOnLevel = 0;
         float time = 0;
+        
         foreach (var spawner in _spawners)
             spawner.StartSpawner();
 
@@ -66,6 +74,7 @@ public class StartGameController : Singleton<StartGameController>
             time = (spawnerParameters.TimeToKillInSeconds * countKillsOnLevel + (enemySpawner.WavesToPassed * enemySpawner.EnemiesReloadingTime + 1)) * spawnerParameters.AdditionalTime;
         }
         LevelProgress.Instance.RequiredNumberOfKills = countKillsOnLevel;
+        
         if (_pointsTimer != null)
             _pointsTimer.StartTimer(time);
 
