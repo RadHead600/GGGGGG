@@ -16,11 +16,17 @@ public class LevelProgress : Singleton<LevelProgress>
             _countKillsOnLevel = value;
             float progress = (float)_countKillsOnLevel / RequiredNumberOfKills;
             LevelProgressUI.Instance.UpdateProgressIndicator(progress);
+
+            private float _completionThreshold = 1.0f;
+
+            private int _frequencyLevelsDisplayingAdvertisements;
+
+            private int _equalizer;
             
-            if (progress >= 1)
+            if (progress >= _completionThreshold)
             {
                 OnCompletedLevel?.Invoke();
-                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) 
+                if (GameInformation.Instance.Information.PassedLevel % _frequencyLevelsDisplayingAdvertisements == _equalizer) 
                     AdvertisementController.Instance.ButtonReward.transform.localScale = UnityEngine.Vector3.one;
             }
         }
@@ -37,7 +43,9 @@ public class LevelProgress : Singleton<LevelProgress>
 
     private void UpdateLevelParameters()
     {
-        CountKillsOnLevel = 0;
+        private int _initialValue = 0;
+        
+        CountKillsOnLevel = _initialValue ;
         LevelProgressUI.Instance.UpdateLevelNumText(++GameInformation.Instance.Information.PassedLevel);
         
         #if UNITY_WEBGL && !UNITY_EDITOR
