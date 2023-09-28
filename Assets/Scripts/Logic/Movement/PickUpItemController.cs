@@ -10,10 +10,10 @@ public class PickUpItemController : MonoBehaviour
 
     public float MagniteRange { get { return _magniteRange; } set { _magniteRange = value; } }
 
-
     private void FixedUpdate()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, _magniteRange, _itemLayers);
+        
         foreach (var collider in colliders)
         {
             Item item = collider.gameObject.GetComponent<Item>();
@@ -28,6 +28,7 @@ public class PickUpItemController : MonoBehaviour
                         Destroy(item.gameObject);
                         return;
                     }
+                    
                     item.Tween.ChangeEndValue(transform.position, true);
                 });
         }
