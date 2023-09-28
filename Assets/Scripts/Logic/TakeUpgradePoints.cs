@@ -14,6 +14,7 @@ public class TakeUpgradePoints : Singleton<TakeUpgradePoints>
                 GameInformation.Instance.Information.UpgradePoints += _upgradePointsParameters.NumOfPoints;
             }
         }
+        
         GameInformation.OnInformationChange?.Invoke();
     }
 
