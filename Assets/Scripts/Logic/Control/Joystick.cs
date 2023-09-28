@@ -3,7 +3,6 @@ using UnityEngine.EventSystems;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-
     [SerializeField] private float _handleRange = 1;
     [SerializeField] private float _deadZone = 0;
 
@@ -35,6 +34,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         HandleRange = _handleRange;
         DeadZone = _deadZone;
+        
         if (_canvas == null)
             Debug.LogError("The Joystick is not placed inside a _canvas");
 
@@ -49,6 +49,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public void OnDrag(PointerEventData eventData)
     {
         _cam = null;
+        
         if (_canvas.renderMode == RenderMode.ScreenSpaceCamera)
             _cam = _canvas.worldCamera;
 
@@ -92,11 +93,13 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)
     {
         Vector2 localPoint = Vector2.zero;
+        
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_baseRect, screenPosition, _cam, out localPoint))
         {
             Vector2 pivotOffset = _baseRect.pivot * _baseRect.sizeDelta;
             return localPoint - (_background.anchorMax * _baseRect.sizeDelta) + pivotOffset;
         }
+        
         return Vector2.zero;
     }
 }
