@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class AudioListenerController : Singleton<AudioListenerController>
 {
+    private const float AudioVolumeOff = 0f;
+    private const float AudioVolumeOn = 1f;
+    
     public void ChangeAuidoListener()
     {
-        if (AudioListener.volume > 0)
-            AudioListener.volume = 0;
+        if (AudioListener.volume > AudioVolumeOff)
+            AudioListener.volume = AudioVolumeOff;
         else
-            AudioListener.volume = 1;
+            AudioListener.volume = AudioVolumeOn;
     }
 
     public  void SetAudioListerner(float value)
