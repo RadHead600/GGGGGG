@@ -19,9 +19,9 @@ public class LevelProgress : Singleton<LevelProgress>
 
             private float _completionThreshold = 1.0f;
 
-            private int _frequencyLevelsDisplayingAdvertisements;
+            private int _frequencyLevelsDisplayingAdvertisements = 2;
 
-            private int _equalizer;
+            private int _equalizer = 0;
             
             if (progress >= _completionThreshold)
             {
