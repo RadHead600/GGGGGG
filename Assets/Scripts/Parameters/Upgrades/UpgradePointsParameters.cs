@@ -9,7 +9,8 @@ public class UpgradePointsParameters : ScriptableObject
     private float _maxTimeToPointsValue = 1f;
     private int _minNumOfPointsValue = 0;
     
-    [SerializeField][Range(_minTimeToPointsValue,_maxTimeToPointsValue)] private List<float> _timesToPoints;
+    [SerializeField][Range(_minTimeToPointsValue,_maxTimeToPointsValue)]
+    private List<float> _timesToPoints;
     [SerializeField][Min(_minNumOfPointsValue)] private int _numOfPoints;
 
     public float MinTimeToPointsValue => _minTimeToPointsValue;
