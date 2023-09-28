@@ -20,7 +20,7 @@ public class LevelProgress : Singleton<LevelProgress>
             if (progress >= 1)
             {
                 OnCompletedLevel?.Invoke();
-                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) // кнопка для показа рекламы каждый второй уровень
+                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) 
                     AdvertisementController.Instance.ButtonReward.transform.localScale = UnityEngine.Vector3.one;
             }
         }
